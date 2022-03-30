@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Wordle - The New York Times</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.nytimes.com/games-assets/v2/metadata/nyt-apple-touch-icon.png?v=v2202021345">
+    <link rel="mask-icon" color="#000000" href="https://www.nytimes.com/games-assets/v2/metadata/nyt-safari-pinned-tab.svg?v=v2202021345">
+    <meta name="apple-mobile-web-app-title" content="NYT Puzzles - Wordle">
+    <meta name="application-name" content="NYT Puzzles - Wordle">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#000000">
+    <meta name="sourceApp" content="games-crosswords">
+    <meta property="description" content="Guess the hidden word in 6 tries. A new puzzle is available each day.">
+    <meta property="og:title" content="Wordle - A daily word game">
+    <meta property="og:url" content="https://www.nytimes.com/games/wordle">
+    <meta property="og:description" content="Guess the hidden word in 6 tries. A new puzzle is available each day.">
+    <meta property="og:image" content="./images/NYT-Wordle-Meta.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="nytimes.com">
+    <link rel="canonical" href="https://www.nytimes.com/games/wordle/index.html">
+    <link rel="manifest" href="https://www.nytimes.com/games/wordle/manifest.json">
+    <link href="https://www.nytimes.com/games/wordle/images/NYT-Wordle-Icon-32.png" rel="icon shortcut" sizes="3232">
+    <link href="https://www.nytimes.com/games/wordle/images/NYT-Wordle-Icon-192.png" rel="apple-touch-icon">
+
+    <style>
+      /* NYT Fonts */
+      @font-face {
+        font-family: 'nyt-karnakcondensed';
+        src: url('./fonts/karnakcondensed-normal-700.woff2') format('woff2'),
+          url('./fonts/karnakcondensed-normal-700.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'nyt-franklin';
+        src: url('./fonts/franklin-normal-500.woff2') format('woff2'),
+          url('./fonts/franklin-normal-500.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'nyt-franklin-700';
+        src: url('./fonts/franklin-normal-700.woff2') format('woff2'),
+          url('./fonts/franklin-normal-700.woff') format('woff');
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      /* Global Styles & Colors */
+      :root {
+        --green: #6aaa64;
+        --darkendGreen: #538d4e;
+        --yellow: #c9b458;
+        --darkendYellow: #b59f3b;
+        --lightGray: #d8d8d8;
+        --gray: #86888a;
+        --darkGray: #939598;
+        --white: #fff;
+        --black: #212121;
+        /* Colorblind colors */
+        --orange: #f5793a;
+        --blue: #85c0f9;
+        font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        --header-height: 50px;
+        --keyboard-height: 200px;
+        --game-max-width: 500px;
+
+        /* icons */
+        --spelling-bee: url('./images/nav-icons/SpellingBee-Icon-Normalized.svg');
+        --daily: url('./images/nav-icons/Crossword-Icon-Normalized.svg');
+        --mini: url('./images/nav-icons/Mini-Icon-Normalized.svg');
+        --tiles: url('./images/nav-icons/Tiles-Icon-Normalized.svg');
+        --sudoku: url('./images/nav-icons/Sudoku-Icon-Normalized.svg');
+        --vertex: url('./images/nav-icons/Vertex-Icon-Normalized.svg');
+        --letter-boxed: url('./images/nav-icons/LetterBoxed-Icon-Normalized.svg');
+        --nyt: url('./images/nav-icons/NYT-Icon-Normalized.svg');
+        --wirecutter: url('./images/nav-icons/Wirecutter-Icon-Normalized.svg');
+        --cooking: url('./images/nav-icons/Cooking-Icon-Normalized.svg');
+        --athletic: url('./images/nav-icons/Athletic-Icon-Normalized.svg');
+
+      }
+
+      /* Light theme colors */
+      :root {
+        --color-tone-1: #000000;
+        --color-tone-2: #787c7e;
+        --color-tone-3: #878a8c;
+        --color-tone-4: #d3d6da;
+        --color-tone-5: #edeff1;
+        --color-tone-6: #f6f7f8;
+        --color-tone-7: #ffffff;
+        --color-nav-hover: #f4f4f4;
+        --opacity-50: rgba(255, 255, 255, 0.5);
+      }
+
+      /* Dark Theme Colors */
+      .nightmode {
+        --color-tone-1: #ffffff;
+        --color-tone-2: #818384;
+        --color-tone-3: #565758;
+        --color-tone-4: #3a3a3c;
+        --color-tone-5: #272729;
+        --color-tone-6: #1a1a1b;
+        --color-tone-7: #121213;
+        --color-nav-hover: #2f2f31;
+        --opacity-50: rgba(0, 0, 0, 0.5);
+
+        /* dark mode icons */
+        --spelling-bee: url('./images/nav-icons/SpellingBee-Icon-Normalized-Color.svg');
+        --daily: url('./images/nav-icons/Crossword-Icon-Normalized-Color.svg');
+        --mini: url('./images/nav-icons/Mini-Icon-Normalized-Color.svg');
+        --tiles: url('./images/nav-icons/Tiles-Icon-Normalized-Color.svg');
+        --sudoku: url('./images/nav-icons/Sudoku-Icon-Normalized-Color.svg');
+        --vertex: url('./images/nav-icons/Vertex-Icon-Normalized-Color.svg');
+        --letter-boxed: url('./images/nav-icons/LetterBoxed-Icon-Normalized-Color.svg');
+        --nyt: url('./images/nav-icons/NYT-Icon-Normalized-Color.svg');
+        --athletic: url('./images/nav-icons/Athletic-Icon-Normalized-Color.svg');
+      }
+      /* Constant colors and colors derived from theme */
+      :root,
+      .nightmode {
+        --color-background: var(--color-tone-7);
+      }
+      :root {
+        --color-present: var(--yellow);
+        --color-correct: var(--green);
+        --color-absent: var(--color-tone-2);
+        --tile-text-color: var(--color-tone-7);
+        --key-text-color: var(--color-tone-1);
+        --key-evaluated-text-color: var(--color-tone-7);
+        --key-bg: var(--color-tone-4);
+        --key-bg-present: var(--color-present);
+        --key-bg-correct: var(--color-correct);
+        --key-bg-absent: var(--color-absent);
+        --modal-content-bg: var(--color-tone-7);
+      }
+      .nightmode {
+        --color-present: var(--darkendYellow);
+        --color-correct: var(--darkendGreen);
+        --color-absent: var(--color-tone-4);
+        --tile-text-color: var(--color-tone-1);
+        --key-text-color: var(--color-tone-1);
+        --key-evaluated-text-color: var(--color-tone-1);
+        --key-bg: var(--color-tone-2);
+        --key-bg-present: var(--color-present);
+        --key-bg-correct: var(--color-correct);
+        --key-bg-absent: var(--color-absent);
+        --modal-content-bg: var(--color-tone-7);
+      }
+      .colorblind {
+        --color-correct: var(--orange);
+        --color-present: var(--blue);
+        --tile-text-color: var(--white);
+        --key-bg-present: var(--color-present);
+        --key-bg-correct: var(--color-correct);
+        --key-bg-absent: var(--color-absent);
+      }
+
+      html {
+        height: 100%;
+      }
+      body {
+        height: 100%;
+        background-color: var(--color-background);
+        margin: 0;
+        padding: 0;
+        /* Prevent scrollbar appearing on page transition */
+        overflow-y: hidden;
+      }
+      .nav-item {
+        background-color: var(--color-nav-hover);
+      }
+      p.banner-text {
+        font-family: 'nyt-franklin' !important;
+      }
+      #pz-gdpr {
+        font-family: 'nyt-franklin-700' !important;
+      }
+    </style>
+  </head>
+  <body>
+    <script async="" src="Wordle%20-%20The%20New%20York%20Times_ficheiros/gtm.js"></script><script>
+      (function () {
+        // Defining the hash before the main bundle allows the bundle access window.hash
+        window.wordle = window.wordle || {};
+        window.wordle.hash = '3d28ac0c';
+      })();
+    </script>
+    <script src="Wordle%20-%20The%20New%20York%20Times_ficheiros/main.js"></script>
+    <script defer="defer" type="text/javascript" src="Wordle%20-%20The%20New%20York%20Times_ficheiros/cookie-notice-v2.js"></script>
+    <game-app></game-app>
+  
+
+<style>@keyframes a{0%{transform:translateY(20px)}to{transform:translateY(0)}}@keyframes b{0%{transform:translateY(0)}to{transform:translateY(20px)}}@keyframes c{0%{opacity:0}to{opacity:1}}@keyframes d{0%{opacity:1}to{opacity:0}}:root{--white:#fff;--gray1:#333;--gray2:#959595;--gray3:#ccc;--blueGray1:#787886;--black:#000;--blue3:#4f85e5;--shadow1:rgba(0,0,0,.3);--shadow2:rgba(0,0,0,.5);--shadow3:0px 1px 2px rgba(0,0,0,.25);--franklin:"nyt-franklin","franklin",sans-serif;--breakpoint-xs-min:0;--breakpoint-sm-min:444px;--breakpoint-sm-max:767px;--breakpoint-md-min:768px;--breakpoint-md-max:991px;--breakpoint-lg-min:992px;--breakpoint-lg-max:1199px;--breakpoint-xl-min:1200px}#pz-gdpr{box-sizing:border-box;align-items:center;justify-content:center;top:0;overflow:hidden;z-index:10000000;width:100%;height:100%;color:var(--gray1)}#pz-gdpr,.pz-snackbar{display:flex;position:fixed;font-family:var(--franklin)}.pz-snackbar{bottom:30px;right:30px;z-index:10000001;max-width:600px;padding:15px 20px;border-radius:2px;font-size:15px;line-height:19px;color:var(--white);background-color:var(--gray1);box-shadow:var(--shadow3);animation-timing-function:cubic-bezier(.075,.82,.165,1);animation-duration:.4s,.36s,.4s,.36s;animation-delay:0ms,0ms,7s,7.01s;animation-name:a,c,b,d;animation-fill-mode:forwards}#pz-gdpr-banner{display:flex;position:fixed;bottom:0;min-height:220px;width:100vw;border-top:1px solid var(--gray1);box-shadow:0 1px 16px var(--shadow1);background:var(--white);overflow:hidden}#pz-gdpr .banner-title{font-size:15px;font-weight:700;line-height:15px;margin:25px 0}#pz-gdpr .banner-text,#pz-gdpr .banner-title{max-width:705px;margin-right:45px}#pz-gdpr .banner-text{margin-bottom:10px;line-height:20px}#pz-gdpr .banner-link{display:inline-block;color:var(--blue3)}#pz-gdpr.close{display:none}#pz-gdpr-btns{display:flex}#pz-gdpr-btns .banner-link{text-decoration:none;color:var(--white)!important}#pz-gdpr-btn-accept,#pz-gdpr-btn-reject{display:block;text-align:center;height:48px;line-height:48px;font-family:inherit;font-size:13px;font-weight:700;letter-spacing:1px;color:var(--white);padding-left:23px;padding-right:23px;cursor:pointer;background:var(--gray1);border:none;border-radius:3px}#pz-gdpr-btn-closex{display:block;position:absolute;right:25px;top:5px;cursor:pointer;background:none;border:none;--x-height:44px;--x-stroke-length:17px;height:var(--x-height);width:var(--x-height)}#pz-gdpr-btn-closex:after,#pz-gdpr-btn-closex:before{position:absolute;top:var(--x-height)/2;left:calc((var(--x-height) - var(--x-stroke-length)) / 2);width:var(--x-stroke-length);height:2px;content:"";border-radius:1px;background:var(--gray1);transform-origin:50% 50%;transform:rotate(45deg)}#pz-gdpr-btn-closex:before{transform:rotate(-45deg)}#pz-gdpr-btn-closex:hover #pz-gdpr-btn-closex:after,#pz-gdpr-btn-closex:hover #pz-gdpr-btn-closex:before{background:var(--gray3)}@media (min-width:769px){#pz-gdpr-banner{justify-content:center;height:220px}#pz-gdpr .banner-text{font-size:14px}#banner-text-wrapper,#pz-gdpr-btns{padding-left:25px}#pz-gdpr-btns{flex-direction:column;justify-content:center;flex-grow:1;max-width:300px;min-width:250px;padding-right:25px}#pz-gdpr-btn-accept{margin-bottom:10px}}@media (min-width:444px) and (max-width:902px){#pz-gdpr .banner-text,#pz-gdpr .banner-title{font-size:13px;margin-right:0}}@media (max-width:444px){.pz-snackbar{max-width:78vw!important}}@media (max-width:768px){.pz-snackbar{max-width:339px;bottom:16px;right:16px;font-size:14px}#pz-gdpr-banner{flex-wrap:wrap;height:320px}#banner-text-wrapper{margin-left:25px;margin-right:25px}#pz-gdpr .banner-text{font-size:12px;line-height:17px}#pz-gdpr .banner-text,#pz-gdpr .banner-title{margin-right:0}#pz-gdpr-btn-closex{top:12px;right:35px;border-left:1px solid var(--gray3)}#pz-gdpr-btns{flex-direction:row;justify-content:flex-start;margin-left:25px}#pz-gdpr-btn-accept,#pz-gdpr-btn-reject{margin-right:10px}}</style><div id="pz-gdpr" class="close"><div id="pz-gdpr-banner"><div id="banner-text-wrapper"><h3 class="banner-title">Your tracker settings</h3><p class="banner-text">We
+ use cookies and similar methods to recognize visitors and remember 
+their preferences. We also use them to measure ad campaign 
+effectiveness, target ads and analyze site traffic. To learn more about 
+these methods, including how to disable them, <a class="banner-link" target="_blank" rel="noopener noreferrer" href="https://nytimes.com/cookie-policy">view our Cookie Policy </a>.</p><p class="banner-text">By
+ clicking ‘accept,’ you consent to the processing of your data by us and
+ third parties using the above methods. You can always change your 
+tracker preferences by visiting our Cookie Policy.</p></div><button id="pz-gdpr-btn-closex"></button><div id="pz-gdpr-btns"><button id="pz-gdpr-btn-accept">ACCEPT</button><button id="pz-gdpr-btn-reject">REJECT</button></div></div></div>
+        
+      <script id="bpc_script">(function nyt_main() {
+    navigator.storage.estimate = undefined;
+    webkitRequestFileSystem = function () {};
+  })();</script><div id="bpc_done" style="display: none;"></div></body></html>
